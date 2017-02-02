@@ -12,10 +12,9 @@ The 4x code makes it possible to read four angular displacements for each pulse.
 The code must be chosen according to the desired precision and the maximum permited revolution speed.
 
 Here is the reading scheme on the rotary encoder.
-   __    __    __
-__|  |__|  |__|  |__   OutputA on the rotary encoder
-    __    __    __
- __|  |__|  |__|  |__  OutputB on the rotary encoder
+
+OutputA on the rotary encoder 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+OutputB on the rotary encoder 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
 
 You notice that signal OutputB is phase-shifted by a quarter cycle on OutputA, which gives us four different states for a complete cycle.
 
