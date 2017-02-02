@@ -37,12 +37,12 @@ void KnobA(void)
 
 void KnobB(void)
 {
-  if (digitalRead(OutA_Pin) != digitalRead(OutB_Pin))
+  if (digitalRead(OutA_Pin) == digitalRead(OutB_Pin))
   {
-    NewPositionKnob++;
+    NewPositionKnob--;
   }
   else
   {  
-    NewPositionKnob--;
+    NewPositionKnob++;
   }
 }
