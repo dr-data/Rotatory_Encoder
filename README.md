@@ -14,6 +14,7 @@ The code must be chosen according to the desired precision and the maximum permi
 Here is the reading scheme on the rotary encoder.
 
 OutputA on the rotary encoder 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+
 OutputB on the rotary encoder 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
 
 You notice that signal OutputB is phase-shifted by a quarter cycle on OutputA, which gives us four different states for a complete cycle.
