@@ -8,7 +8,7 @@ void setup()
   pinMode(OutA_Pin, INPUT_PULLUP);
   pinMode(OutB_Pin, INPUT_PULLUP);
   Serial.begin(9600);
-  Serial.println("Basic Encoder Test 1X :");
+  Serial.println("Basic Encoder Test 2X :");
   attachInterrupt(digitalPinToInterrupt(OutA_Pin), Knob, CHANGE);
 }
 
@@ -19,12 +19,13 @@ void loop()
     Serial.print("Knob = ");
     Serial.println(NewPositionKnob);
     PositionKnob = NewPositionKnob;
+    // delay(1000);
   }
 }
 
 void Knob(void)
 {
-  if (digitalRead(OutA_Pin) == 1 && digitalRead(OutB_Pin) == 1 || digitalRead(OutA_Pin) == 0 && digitalRead(OutB_Pin) == 0)
+  if (digitalRead(OutA_Pin) == digitalRead(OutB_Pin))
   {
     NewPositionKnob++;
   }
@@ -33,3 +34,4 @@ void Knob(void)
     NewPositionKnob--;
   }
 }
+
