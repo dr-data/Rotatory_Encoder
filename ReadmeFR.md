@@ -6,13 +6,12 @@ Le code 2x permet de lire deux déplacements angulaires pour chaque pulsation. L
 
 Le code 4x permet de lire quatre déplacements angulaires pour chaque pulsation. La routine d’interruption est invoquée quatre fois plus souvent donc la vitesse de révolution maximale en est réduite. Toutefois, vous quadruplez la précision de la lecture.
 
-Il faut choisir le code en fonction de la précision souhaité ainsi que la vitesse de révolution maximale permise.
+Il faut choisir le code en fonction de la précision souhaitée ainsi que la vitesse de révolution maximale permise.
 
 Voici le schéma de lecture sur l’encodeur rotatif.
-      __       __      __
-__|   |__|   |__|   |__     Output A sur l’encodeur rotatif
-         __       __      __
-   __|   |__|   |__|   |__  Output B sur l’encodeur rotatif
+
+OutputA sur l’encodeur rotatif 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+OutputB sur l’encodeur rotatif 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
 
 Vous remarquez que le signal B est déphasé d’un quart de cycle sur le signal A ce qui nous donne quatre états différent pour un cycle complet.
 
@@ -22,4 +21,12 @@ Le changement d’état d’un des deux signaux indique un déplacement angulair
 
 Le code 1x tente de minimiser le nombre de traitements afin d’accroitre la vitesse angulaire maximale permise. On s’intéresse donc à un seul déclencheur par cycle. On a choisi de surveiller OutputA seulement lors du passage d’un signal de 0 à 1 (RAISING). La routine valide le signal présent sur OutputB à ce moment afin de déterminer le sens de rotation. Une seule lecture par cycle et une routine simple à exécuter. Les valeurs possibles sont 10 ou 11 selon le sens de rotation.
 
+Le code 2x permet d'accroitre la précision de la position angulaire au prix d'un plus grand nombre de lecture par révolution et d'un traitement plus lourd à chacune de celle-ci. On vise donc à doubler le nombre de déclencheurs par cycle. On a choisi de surveiller OutputA seulement lors du passage d’un signal de 0 à 1 et 1 à 0 (CHANGE). La routine valide le signal présent sur OutputB à ce moment afin de déterminer le sens de rotation. Deux lectures par cycle et une routine plus complexe à exécuter.
+
+OutputA sur l’encodeur rotatif 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+
+OutputB sur l’encodeur rotatif 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
+
+Les valeurs possibles sont 10 et 01 dans un sens et 11 et 00 dans l'autre sens.
+Pour simplifier le code, on peut dire : OutputA != OutputB dans un sens et OutputA == OutputB dans l'autre sens. Il faut réduire au maximum les opérationss afin de favoriser le temps d'exécution et par le fait même accroitre la vitesse de révolution supportée par l'encodeur rotatif.
 
