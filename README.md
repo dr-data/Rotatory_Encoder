@@ -24,3 +24,12 @@ You notice that signal OutputB is phase-shifted by a quarter cycle on OutputA, w
 The change of state of one of the two signals indicates an angular displacement of a quarter of a pulse while the sequence determines the direction of rotation. This information is obtained by setting interrupts on an Arduino. There are several interruptions, for the Arduino Uno it is: Int0 = pin2 and Int1 = Pin3. It is possible to monitor only the change of state from 0 to 1, from 1 to 0 or simply any changes of state. With these variants, the code can be adjusted to increase the accuracy to the detriment of the number of treatments to be carried out.
 
 The 1x code attempts to minimize the number of processes in order to increase the maximum allowed angular velocity. We are therefore interested in only one trigger per cycle. It was chosen to monitor OutputA only when passing a signal from 0 to 1 (RAISING). The routine validates the signal present on OutputB at this moment and it indicate the direction of rotation. Only one reading per cycle and a simple routine. The possible values are : 10 or 11 according to the direction of rotation.
+
+The code 2x makes it possible to increase the accuracy of the angular position at the price of a greater number of readings per revolution and a heavier processing at each of them. The aim is to double the number of triggers per cycle. It was chosen to monitor OutputA only when passing from a signal 0 to 1 and 1 to 0 (CHANGE). The routine validates the signal present on OutputB at this time to determine the direction of rotation. Two readings per cycle and a more complex routine to perform.
+
+OutputA on the rotary encoder 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+OutputB on the rotary encoder 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
+
+The possible values are 10 and 01 in one direction and 11 and 00 in the other direction.
+To simplify the code, we can say: OutputA != OutputB in one direction and OutputA == OutputB in the other direction. It is necessary to minimize the operations in order to favor the execution time and thereby increase the revolution speed supported by the rotary encoder.
+
