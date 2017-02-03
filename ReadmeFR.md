@@ -30,3 +30,13 @@ OutputB sur l’encodeur rotatif 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
 Les valeurs possibles sont 10 et 01 dans un sens et 11 et 00 dans l'autre sens.
 Pour simplifier le code, on peut dire : OutputA != OutputB dans un sens et OutputA == OutputB dans l'autre sens. Il faut réduire au maximum les opérations afin de favoriser le temps d'exécution et par le fait même accroitre la vitesse de révolution supportée par l'encodeur rotatif.
 
+Le code 4x permet d'accroitre la précision de la position angulaire encore plus au prix d'un plus grand nombre de lecture par révolution et d'un traitement plus lourd à chacune de celle-ci. On vise donc à quadrupler le nombre de déclencheurs par cycle. On a choisi de surveiller OutputA  et OutputB simultanément seulement lors du passage d’un signal de 0 à 1 et 1 à 0 (CHANGE). La routine valide le signal présent sur l’autre Output à ce moment afin de déterminer le sens de rotation. Quatre lectures par cycle et une routine plus complexe à exécuter.
+
+Output A sur l’encodeur rotatif 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+
+Output B sur l’encodeur rotatif 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
+
+Les valeurs possibles pour le déclencheur OutputA sont 10 et 01 dans un sens et 11 et 00 dans l'autre sens.
+Les valeurs possibles pour le déclencheur OutputB sont 11 et 00 dans un sens et 10 et 01 dans l'autre sens.
+
+Pour simplifier le code, on peut dire que pour le déclencheur OutputA : OutputA != OutputB dans un sens et OutputA == OutputB dans l'autre sens. Pour le déclencheur OutputB c’est l’inverse. Il y a donc deux déclencheurs et deux routines. Il faut réduire au maximum les opérations afin de favoriser le temps d'exécution et par le fait même accroitre la vitesse de révolution supportée par l'encodeur rotatif.
