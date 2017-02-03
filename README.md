@@ -34,3 +34,12 @@ OutputB on the rotary encoder 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
 The possible values are 10 and 01 in one direction and 11 and 00 in the other direction.
 To simplify the code, we can say: OutputA != OutputB in one direction and OutputA == OutputB in the other direction. It is necessary to minimize the operations in order to favor the execution time and thereby increase the revolution speed supported by the rotary encoder.
 
+The 4x code makes it possible to increase the precision of the angular position even more at the price of a greater number of readings per revolution and a heavier processing at each of them. The aim is to quadruple the number of triggers per cycle. It has been chosen to monitor OutputA and OutputB simultaneously only when passing a signal from 0 to 1 and 1 to 0 (CHANGE). The routine validates the signal present on the other Output at this time to determine the direction of rotation. Four readings per cycle and a more complex routine to perform.
+
+Output A on the rotary encoder 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+
+Output B on the rotary encoder 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
+
+The possible values for the OutputA trip unit are 10 and 01 in one direction and 11 and 00 in the other direction.
+The possible values for the OutputB trigger are 11 and 00 in one direction and 10 and 01 in the other direction.
+To simplify the code, we can say that for the trigger OutputA: OutputA! = OutputB in one direction and OutputA == OutputB in the other direction. For the OutputB trigger it is the reverse. So there are two triggers and two routines. It is necessary to minimize the operations in order to favor the execution time and thereby increase the revolution speed supported by the rotary encoder.
