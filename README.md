@@ -28,6 +28,7 @@ The 1x code attempts to minimize the number of processes in order to increase th
 The code 2x makes it possible to increase the accuracy of the angular position at the price of a greater number of readings per revolution and a heavier processing at each of them. The aim is to double the number of triggers per cycle. It was chosen to monitor OutputA only when passing from a signal 0 to 1 and 1 to 0 (CHANGE). The routine validates the signal present on OutputB at this time to determine the direction of rotation. Two readings per cycle and a more complex routine to perform.
 
 OutputA on the rotary encoder 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
+
 OutputB on the rotary encoder 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
 
 The possible values are 10 and 01 in one direction and 11 and 00 in the other direction.
