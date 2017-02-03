@@ -28,5 +28,5 @@ OutputA sur l’encodeur rotatif 0 1 1 0, 0 1 1 0, 0 1 1 0, 0 ...
 OutputB sur l’encodeur rotatif 0 0 1 1, 0 0 1 1, 0 0 1 1, 0 ...
 
 Les valeurs possibles sont 10 et 01 dans un sens et 11 et 00 dans l'autre sens.
-Pour simplifier le code, on peut dire : OutputA != OutputB dans un sens et OutputA == OutputB dans l'autre sens. Il faut réduire au maximum les opérationss afin de favoriser le temps d'exécution et par le fait même accroitre la vitesse de révolution supportée par l'encodeur rotatif.
+Pour simplifier le code, on peut dire : OutputA != OutputB dans un sens et OutputA == OutputB dans l'autre sens. Il faut réduire au maximum les opérations afin de favoriser le temps d'exécution et par le fait même accroitre la vitesse de révolution supportée par l'encodeur rotatif.
 
