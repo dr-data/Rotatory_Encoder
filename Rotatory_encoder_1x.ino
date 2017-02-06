@@ -21,7 +21,7 @@ void loop()
     PositionKnob = NewPositionKnob;
     // you could publish "PositionKnob" thru MQTT, serial port or take any other actions based on the result.
     // wait for a delay to avoid flooding the destination
-    // It will have no effect on the reading of the rotatory because interrupts are prior to any other functions.
+    // Delay will have no effect on the reading of the rotatory because interrupts are prior to any other functions.
   }
 }
 
